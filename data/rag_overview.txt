@@ -1,0 +1,44 @@
+# Retrieval-Augmented Generation (RAG) Overview
+## What is RAG?
+Retrieval-Augmented Generation (RAG) is a technique that combines the power of
+large language models with external knowledge retrieval. Instead of relying
+solely on the knowledge encoded in the model's parameters during training,
+RAG systems can access and incorporate up-to-date, domain-specific information
+at inference time.
+## Key Components
+### 1. Document Ingestion
+The process of loading, processing, and storing documents in a searchable format.
+- Document loading (PDF, TXT, HTML, etc.)
+- Text chunking (splitting into manageable pieces)
+- Embedding generation (converting text to vectors)
+- Vector storage (FAISS, Pinecone, Chroma, etc.)
+### 2. Retrieval Methods
+#### Semantic Search
+Uses dense vector embeddings to find semantically similar documents.
+- Pros: Understands meaning, handles synonyms
+- Cons: May miss exact keyword matches
+#### Lexical Search (BM25)
+Traditional keyword-based search using term frequency.
+- Pros: Fast, good for exact matches
+- Cons: Doesn't understand semantics
+#### Hybrid Search
+Combines semantic and lexical search for best results.
+- Ensemble methods
+- Reciprocal Rank Fusion (RRF)
+### 3. Reranking
+Cross-encoder models that score query-document pairs more accurately.
+- BAAI/bge-reranker
+- Cohere Rerank
+- More accurate but slower than bi-encoders
+## Best Practices
+1. Chunk size matters - too small loses context, too large is noisy
+2. Overlap between chunks preserves context at boundaries
+3. Metadata filtering improves relevance
+4. Reranking significantly improves quality
+5. Hybrid search outperforms single methods
+## Common Challenges
+- Chunking strategy selection
+- Handling multi-modal documents
+- Balancing speed vs. accuracy
+- Managing large document collections
+- Keeping embeddings up-to-date
